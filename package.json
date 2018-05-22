@@ -1,0 +1,46 @@
+{
+  "name": "firebase-functions-instance",
+  "main": "index.js",
+  "description": "Methods and Helpers for Firebase cloud functions, Firestore, RTDB, and more",
+  "keywords": [
+    "firebase"
+  ],
+  "author": "Siriwat Kunaporn",
+  "license": "MIT",
+  "version": "1.0.1",
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+  "scripts": {
+    "fblogin": "yarn firebase login",
+    "clean:lib": "rimraf index.js",
+    "build:lib": "cross-env BABEL_ENV=production babel 'src/functions/instances' --out-file index.js",
+    "prepackage": "yarn clean:lib && yarn build:lib",
+    "package": "yarn publish",
+    "dev": "babel 'src/functions' --watch --out-dir 'dist/functions'",
+    "serve": "firebase serve --only functions",
+    "deploy": "yarn firebase deploy --only functions",
+    "clean": "rimraf 'dist/functions'",
+    "build:funcs": "babel 'src/functions' --out-dir 'dist/functions' --copy-files --ignore 'node_modules'",
+    "deps:copy": "cpx '*{package.json,yarn.lock}' 'dist/functions'",
+    "deps:install": "cd 'dist/functions' && yarn"
+  },
+  "dependencies": {
+    "firebase-admin": "^5.11.0",
+    "firebase-functions": "^0.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-minify": "^0.3.0",
+    "cpx": "^1.5.0",
+    "cross-env": "^5.1.3",
+    "firebase-tools": "^3.17.7",
+    "rimraf": "^2.6.2"
+  }
+}
