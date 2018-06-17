@@ -38,6 +38,7 @@ lib
 
 dist
 src/functions/firebase-adminsdk.json
+./index.js
 
 # npm package lock
 package-lock.json

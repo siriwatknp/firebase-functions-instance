@@ -7,7 +7,7 @@
   ],
   "author": "Siriwat Kunaporn",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "",
   "bugs": {
     "url": ""
@@ -15,7 +15,7 @@
   "scripts": {
     "fblogin": "yarn firebase login",
     "clean:lib": "rimraf index.js",
-    "build:lib": "cross-env BABEL_ENV=production babel 'src/functions/instances' --out-file index.js",
+    "build:lib": "cross-env BABEL_ENV=production babel 'src/functions/instances/index.js' --out-file index.js",
     "prepackage": "yarn clean:lib && yarn build:lib",
     "package": "yarn publish",
     "dev": "babel 'src/functions' --watch --out-dir 'dist/functions'",
@@ -27,12 +27,18 @@
     "deps:install": "cd 'dist/functions' && yarn"
   },
   "dependencies": {
+    "camelcase-keys": "^4.2.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "firebase": "^5.0.4",
     "firebase-admin": "^5.11.0",
-    "firebase-functions": "^0.9.1"
+    "firebase-functions": "^0.9.1",
+    "lodash": "^4.17.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",
     "@babel/core": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.49",
     "@babel/preset-env": "^7.0.0-beta.42",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-module-resolver": "^3.1.1",
