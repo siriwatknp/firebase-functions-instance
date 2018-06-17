@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { service, firebaseApp } from '../config'
-import { FireStoreCollection, Auth } from '../instances'
+import { FireStoreCollection, Auth, UserModel } from '../instances'
 
 const app = express()
 const userCollection = new FireStoreCollection(service.firestore(), 'users')
@@ -17,6 +17,21 @@ app.get('', authInstance.verifyMiddleware, (req, res) => {
 
 app.get('/:id', (req, res) => {
   userCollection.find(req.params.id)
+    .then((result) => res.send(result))
+    .catch((err) => res.send(err))
+})
+
+app.post('/facebook', (req, res) => {
+  const parsedData = UserModel.parseFacebookData(req.body)
+  const id = UserModel.getUid(req.body)
+  console.log('id', id)
+  userCollection.isDocumentExists(id)
+    .then(({ exists }) => {
+      if (exists) {
+        return userCollection.save({ ...parsedData, id })
+      }
+      return userCollection.insertOne(parsedData, { id })
+    })
     .then((result) => res.send(result))
     .catch((err) => res.send(err))
 })

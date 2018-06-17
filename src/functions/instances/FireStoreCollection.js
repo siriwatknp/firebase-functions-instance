@@ -11,6 +11,15 @@ export default class FireStoreCollection {
     this.Error = ErrorModel || CustomError
   }
 
+  isDocumentExists(docId) {
+    return this.ref.doc(docId)
+      .get()
+      .then((docSnapshot) => ({
+        exists: docSnapshot.exists,
+        data: docSnapshot.data(),
+      }))
+  }
+
   find(id, options = {}) {
     if (id) {
       return this.ref.doc(id)
@@ -44,6 +53,7 @@ export default class FireStoreCollection {
 
   insertOne(data, options = {}) {
     const { id, timeStamp = true, } = options
+    console.log('id', id)
     const newData = timeStamp ? { ...data, createdAt: FieldValue.serverTimestamp() } : data
     let promise
     if (id) {
