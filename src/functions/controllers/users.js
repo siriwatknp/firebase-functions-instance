@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { service, firebaseApp } from '../config'
-import { FireStoreCollection, Auth, UserModel } from '../instances'
+import { FireStoreCollection, Auth, UserModel, errorHandlerMiddleware } from '../instances'
 
 const app = express()
 const userCollection = new FireStoreCollection(service.firestore(), 'users')
@@ -67,6 +67,6 @@ app.post('/sign-in', (req, res) => {
     .catch((err) => res.send(err))
 })
 
-
+app.use('*', errorHandlerMiddleware)
 
 export default app
