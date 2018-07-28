@@ -1,22 +1,22 @@
-import admin from 'firebase-admin'
-import omit from 'lodash/omit'
-import pick from 'lodash/pick'
-import reduce from 'lodash/reduce'
+import admin from 'firebase-admin';
+import omit from 'lodash/omit';
+import pick from 'lodash/pick';
+import reduce from 'lodash/reduce';
 
 export const manageObjectFields = (item, options = {}) => {
-  const { includeFields, excludeFields } = options
+  const { includeFields, excludeFields } = options;
   if (includeFields) {
-    return pick(item, includeFields)
+    return pick(item, includeFields);
   }
   if (excludeFields) {
-    return omit(item, excludeFields)
+    return omit(item, excludeFields);
   }
-  return item
-}
+  return item;
+};
 
 export const createDeletedFields = (fields, resolveKey) => (
   reduce(fields, (result, field) => ({
     ...result,
-    [resolveKey ? resolveKey(field) : field]: admin.firestore.FieldValue.delete(),
+    [resolveKey ? resolveKey(field) : field]: admin.firestore.FieldValue.delete()
   }), {})
-)
+);
