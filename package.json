@@ -32,13 +32,15 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "firebase": "^5.0.4",
-    "firebase-admin": "^5.11.0",
-    "firebase-functions": "^0.9.1",
-    "lodash": "^4.17.10"
+    "firebase-admin": "^5.13.1",
+    "firebase-functions": "^2.0.2",
+    "lodash": "^4.17.10",
+    "reusable-functions": "^1.0.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",
     "@babel/core": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.54",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.49",
     "@babel/preset-env": "^7.0.0-beta.42",
     "babel-eslint": "^8.2.6",

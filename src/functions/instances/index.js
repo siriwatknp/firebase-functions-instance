@@ -1,12 +1,11 @@
 import FireStoreCollection from './FireStoreCollection';
 import Auth from './Auth';
-import Error, { errorHandlerMiddleware } from './Error';
+import * as Error from './Error';
 import UserModel from './UserModel';
 
 export {
   Auth,
   Error,
-  errorHandlerMiddleware,
   FireStoreCollection,
   UserModel
 };

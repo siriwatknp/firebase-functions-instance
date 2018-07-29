@@ -1,5 +1,4 @@
 import express from 'express';
-import cors from 'cors';
 import {
   service,
   firebaseApp
@@ -7,80 +6,67 @@ import {
 import {
   FireStoreCollection,
   Auth,
-  UserModel,
-  errorHandlerMiddleware
+  UserModel
 } from '../instances';
 
-const app = express();
+const router = express.Router();
 const userCollection = new FireStoreCollection(service.firestore(), 'users');
 const authInstance = new Auth(service.auth());
+const userModel = new UserModel(userCollection);
 
-app.use(cors({ origin: true }));
-
-app.get('', authInstance.verifyMiddleware, (req, res) => {
+router.get('/', authInstance.verifyMiddleware, (req, res, next) => {
   userCollection.find()
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.get('/:id', (req, res) => {
-  userCollection.find(req.params.id)
+router.get('/:id', (req, res, next) => {
+  userModel.findOne(req.params.id)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.post('/facebook', (req, res) => {
-  const parsedData = UserModel.parseFacebookData(req.body);
-  const id = UserModel.getUid(req.body);
-  console.log('id', id);
-  userCollection.isDocumentExists(id)
-    .then(({ exists }) => {
-      if (exists) {
-        return userCollection.save({
-          ...parsedData,
-          id
-        });
-      }
-      return userCollection.insertOne(parsedData, { id });
-    })
+router.post('/email-password', (req, res, next) => {
+  userModel.createUserFromEmailAndPassword(req.body)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.post('', (req, res) => {
-  userCollection.insertOne(req.body)
+router.post('/facebook', (req, res, next) => {
+  userModel.createUserFromFacebook(req.body)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.put('/:id', (req, res) => {
-  userCollection.save({
-    ...req.body,
-    id: req.params.id
-  })
+router.put('/:id/basic-info', (req, res, next) => {
+  userModel.updateBasicInfo(req.params.id, req.body)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.delete('/:id', (req, res) => {
-  userCollection.deleteOne(req.params.id)
+router.delete('/email', (req, res, next) => {
+  userModel.removeForever(req.body.email)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.post('/:id/removeFields', (req, res) => {
+router.delete('/:id', (req, res, next) => {
+  userModel.removeForever(req.params.id)
+    .then(result => res.send(result))
+    .catch(err => next(err));
+});
+
+router.post('/:id/removeFields', (req, res, next) => {
   userCollection.deleteDocFields(req.params.id, req.body)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.post('/sign-in', (req, res) => {
+router.post('/sign-in', (req, res, next) => {
   const { email, password } = req.body;
   Auth.signIn(firebaseApp, email, password)
     .then(result => res.send(result))
-    .catch(err => res.send(err));
+    .catch(err => next(err));
 });
 
-app.use('*', errorHandlerMiddleware);
-
-export default app;
+export default router;

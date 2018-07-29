@@ -1,0 +1,68 @@
+{
+  "user": {
+    "uid": "YcsQzvHBiIYQt71V45xC1FALIeJ3",
+    "displayName": "Siriwat Kunaporn",
+    "photoURL": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/14681634_1161901747189050_5797400538456834692_n.jpg?oh=f736cdb…&oe=5A39439C",
+    "email": "siriwat159@hotmail.com",
+    "emailVerified": false,
+    "phoneNumber": null,
+    "isAnonymous": false,
+    "providerData": [
+      {
+        "uid": "1458627320849823",
+        "displayName": "Siriwat Kunaporn",
+        "photoURL": "https://graph.facebook.com/1458627320849823/picture",
+        "email": "siriwat159@hotmail.com",
+        "phoneNumber": null,
+        "providerId": "facebook.com"
+      }
+    ],
+    "apiKey": "AIzaSyCOEUP0WenLSE0T-cjRNa6m7oqMSI6tq3M",
+    "appName": "[DEFAULT]",
+    "authDomain": "react-app-ce8ba.firebaseapp.com",
+    "stsTokenManager": {
+      "apiKey": "AIzaSyCOEUP0WenLSE0T-cjRNa6m7oqMSI6tq3M",
+      "refreshToken": "AK2wQ-xwAXGqDrCUjQ87rc0Z81cklj6vU0_ujixoDRz0ezUnYCkx1htx87KHIFZk9aOBcQ7H-pnbYAKje5l2OxfO8t30E1ATOuSGiRaP9F8BQAzm8LxCVihbqzAoPzDIMOyDSy07g0gW-OcNMKo4fRJ9ImgjEcey2ohqHCQg1jplRxqIVtJwJBr5P28Gl3OkoyK8O6yWC-e3LT2arAuq8umyphmTWWaOOEse4CAHa3pTTnfUrLCxYX-VEIoOwRUJti8C1OROsi9dLMuZoqcM4jZ_jhxEx791HplmRnIOb6ipww3ZMBrbNoN_ff9fE6LzPDn6S804Kfcb",
+      "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjdhM2QxOTA0ZjE4ZTI1Nzk0ODgzMWVhYjgwM2UxMmI3OTcxZTEzYWIifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcmVhY3QtYXBwLWNlOGJhIiwibmFtZSI6IlNpcml3YXQgS3VuYXBvcm4iLCJwaWN0dXJlIjoiaHR0cHM6Ly9zY29udGVudC54eC5mYmNkbi5uZXQvdi90MS4wLTEvcDEwMHgxMDAvMTQ2ODE2MzRfMTE2MTkwMTc0NzE4OTA1MF81Nzk3NDAwNTM4NDU2ODM0NjkyX24uanBnP29oPWY3MzZjZGIxNDY4YjRjY2U2YjdlZDRkMzAzZWZlN2FkJm9lPTVBMzk0MzlDIiwiYXVkIjoicmVhY3QtYXBwLWNlOGJhIiwiYXV0aF90aW1lIjoxNTI5MjExNzQ5LCJ1c2VyX2lkIjoiWWNzUXp2SEJpSVlRdDcxVjQ1eEMxRkFMSWVKMyIsInN1YiI6Illjc1F6dkhCaUlZUXQ3MVY0NXhDMUZBTEllSjMiLCJpYXQiOjE1MjkyMTE3NDksImV4cCI6MTUyOTIxNTM0OSwiZW1haWwiOiJzaXJpd2F0MTU5QGhvdG1haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImZhY2Vib29rLmNvbSI6WyIxNDU4NjI3MzIwODQ5ODIzIl0sImVtYWlsIjpbInNpcml3YXQxNTlAaG90bWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJmYWNlYm9vay5jb20ifX0.AhTDYtf3xt95Cf7OlBBE82d1FPoAchDBltklFljdtOF1M6ntzYVk_PWPCRTl_2Akuhh9Mol8UIPbTdJFdW8rs4IgWENVxgkGCSOoj_z0jSU2dzYcHXHsG0LIvDFNN0YAniThhdb-3K5FU5afBPwNqXkeL4cZNO48h5rbRZc7ytY257wQLNhJwOzgia9RvJCcRpRR44Px4hsYd8dtLi4IIcQ66pCGMxl0jcrJdHbPlLUK2XD85hNJvG6I07h30sRx0eECXOOoHqTrWK0Er5FSXF_HCG7kg0zINitYDT348i4syQAzrBw1-zCF5dkpHEzqdphP9pRF0Ynt05_8ABATtw",
+      "expirationTime": 1529215349695
+    },
+    "redirectEventId": null,
+    "lastLoginAt": "1529211749000",
+    "createdAt": "1501947093000"
+  },
+  "credential": {
+    "accessToken": "EAAEo4Hz4QPIBACVwbjQzLjty6DnNzIlgUioMpUuf3UZBv9RW2qjmbIrLLZAZCmaCPdjMrkNjH43xUBBjgJJZASePidDyKe2NQkd8aevC1aXFk2ZAS2zXhcBHQTcTC6YZAR5uDwxBpnWhAeVgax7a0dFYSBi1X5N98Eo9cZB3O8utQZDZD",
+    "providerId": "facebook.com",
+    "signInMethod": "facebook.com"
+  },
+  "additionalUserInfo": {
+    "providerId": "facebook.com",
+    "isNewUser": true,
+    "profile": {
+      "birthday": "02/10/1994",
+      "updated_time": "2018-04-21T10:56:06+0000",
+      "gender": "male",
+      "timezone": 7,
+      "link": "https://www.facebook.com/app_scoped_user_id/YXNpZADpBWEhkRkx1SWxPb1Jqck80NF…FZABM3ZAPTnQ3bXNEYjI5cnhTTlR1YS1vc3gtWGdMV2hwc3BQekRNTlU4SWRTRk5oeEp6WG9y/",
+      "verified": true,
+      "last_name": "Kunaporn",
+      "locale": "en_US",
+      "picture": {
+        "data": {
+          "is_silhouette": false,
+          "width": 100,
+          "url": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1458627320849823&height=100&width=100&ext=1529470949&hash=AeRKy-UhB3k7Opkx",
+          "height": 100
+        }
+      },
+      "age_range": {
+        "min": 21
+      },
+      "name": "Siriwat Kunaporn",
+      "id": "1458627320849823",
+      "first_name": "Siriwat",
+      "email": "siriwat159@hotmail.com"
+    }
+  },
+  "operationType": "signIn"
+}

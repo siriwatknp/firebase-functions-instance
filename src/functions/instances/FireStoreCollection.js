@@ -1,14 +1,29 @@
 import admin from 'firebase-admin';
+import omit from 'lodash/omit';
 import CustomError from './Error';
-import { manageObjectFields, createDeletedFields } from './helpers';
+import {
+  manageObjectFields,
+  createDeletedFields
+} from './helpers';
 
-const FieldValue = admin.firestore.FieldValue;
+const { FieldValue } = admin.firestore;
 
 export default class FireStoreCollection {
   constructor(firestore, collection, ErrorModel) {
     this.collection = collection;
     this.ref = firestore.collection(collection);
     this.Error = ErrorModel || CustomError;
+  }
+
+  static convertToData(snapshot) {
+    const createdAt = snapshot.get('createdAt');
+    const updatedAt = snapshot.get('updatedAt');
+    return {
+      ...snapshot.data(),
+      id: snapshot.id,
+      ...createdAt && { createdAt: createdAt.toDate() },
+      ...updatedAt && { updatedAt: updatedAt.toDate() }
+    };
   }
 
   isDocumentExists(docId) {
@@ -32,20 +47,20 @@ export default class FireStoreCollection {
               message: `There is no document for id: ${id}`
             });
           }
-          return manageObjectFields({
-            ...docSnapshot.data(),
-            id: docSnapshot.id
-          }, options);
+          return manageObjectFields(
+            FireStoreCollection.convertToData(docSnapshot),
+            options
+          );
         });
     }
     return this.ref.get()
       .then((querySnapshot) => {
         const result = [];
         querySnapshot.forEach((docSnapshot) => {
-          result.push(manageObjectFields({
-            id: docSnapshot.id,
-            ...docSnapshot.data()
-          }, options));
+          result.push(manageObjectFields(
+            FireStoreCollection.convertToData(docSnapshot),
+            options
+          ));
         });
         return result;
       });
@@ -53,8 +68,11 @@ export default class FireStoreCollection {
 
   insertOne(data, options = {}) {
     const { id, timeStamp = true } = options;
-    console.log('id', id);
-    const newData = timeStamp ? { ...data, createdAt: FieldValue.serverTimestamp() } : data;
+    // console.log('id', id);
+    const newData = timeStamp ? {
+      ...data,
+      createdAt: FieldValue.serverTimestamp()
+    } : data;
     let promise;
     if (id) {
       promise = this.ref
@@ -65,31 +83,49 @@ export default class FireStoreCollection {
         .add(newData);
     }
     return promise
-      .then(docRef => ({ ...newData, id: docRef.id }));
+      .then(docRef => ({
+        ...omit(newData, 'createdAt'),
+        id: docRef.id
+      }));
   }
 
   save({ id, ...rest }, options = {}) {
     if (!id) {
       return this.insertOne(rest, options);
     }
+    const { timeStamp = true, ...otherOptions } = options;
+    const timestamp = FieldValue.serverTimestamp();
     // https://firebase.google.com/docs/firestore/manage-data/add-data?authuser=0#update-data
     return this.ref
       .doc(id)
-      .update({ ...rest, updatedAt: FieldValue.serverTimestamp() })
-      .then(() => manageObjectFields({ id, ...rest }, options));
+      .update({
+        ...rest,
+        ...timeStamp && { updatedAt: timestamp }
+      })
+      .then(() => manageObjectFields({
+        id,
+        ...rest
+      }, otherOptions));
   }
 
   deleteOne(id) {
     return this.ref
       .doc(id)
       .delete()
-      .then(() => ({ success: true, id }));
+      .then(() => ({
+        success: true,
+        id
+      }));
   }
 
   deleteDocFields(id, fields, resolveKey) {
     return this.ref
       .doc(id)
       .update(createDeletedFields(fields, resolveKey))
-      .then(() => ({ success: true, id, fields }));
+      .then(() => ({
+        success: true,
+        id,
+        fields
+      }));
   }
 }

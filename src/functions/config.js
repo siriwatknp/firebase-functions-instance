@@ -7,6 +7,9 @@ export const service = admin.initializeApp({
   databaseURL: 'https://react-app-ce8ba.firebaseio.com'
 });
 
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+service.firestore().settings(settings);
+
 export const firebaseApp = firebase.initializeApp({
   apiKey: 'AIzaSyCOEUP0WenLSE0T-cjRNa6m7oqMSI6tq3M',
   authDomain: 'react-app-ce8ba.firebaseapp.com',
